@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>贪吃蛇游戏 - 升级版</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 加载时的动画 */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .loader {
+            animation: pulse 1.5s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="loader">贪吃蛇游戏</h1>
+            <div class="game-info">
+                <div class="info-item">
+                    <span class="info-label">得分:</span>
+                    <span id="score" class="info-value">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">最高分:</span>
+                    <span id="highScore" class="info-value">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">等级:</span>
+                    <span id="level" class="info-value">1</span>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <div class="game-container">
+                <canvas id="gameCanvas" width="400" height="400"></canvas>
+                
+                <!-- 移动端虚拟控制按钮 -->
+                <div class="mobile-controls">
+                    <div class="control-row">
+                        <button id="upBtn" class="mobile-btn">↑</button>
+                    </div>
+                    <div class="control-row">
+                        <button id="leftBtn" class="mobile-btn">←</button>
+                        <button id="pauseMobileBtn" class="mobile-btn pause">▌▌</button>
+                        <button id="rightBtn" class="mobile-btn">→</button>
+                    </div>
+                    <div class="control-row">
+                        <button id="downBtn" class="mobile-btn">↓</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-settings">
+                <div class="setting-group">
+                    <label for="difficulty">难度选择:</label>
+                    <select id="difficulty">
+                        <option value="easy">简单</option>
+                        <option value="normal" selected>中等</option>
+                        <option value="hard">困难</option>
+                        <option value="expert">疯狂</option>
+                    </select>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="theme">主题选择:</label>
+                    <select id="theme">
+                        <option value="default" selected>经典</option>
+                        <option value="dark">暗黑</option>
+                        <option value="colorful">多彩</option>
+                        <option value="nature">自然</option>
+                    </select>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="grid">网格显示:</label>
+                    <label class="switch">
+                        <input type="checkbox" id="showGrid" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="game-actions">
+                <button id="startBtn" class="btn primary">开始游戏</button>
+                <button id="pauseBtn" class="btn secondary" disabled>暂停</button>
+                <button id="resetBtn" class="btn danger" disabled>重置</button>
+                <button id="soundBtn" class="btn outline">🔊 音效</button>
+            </div>
+        </main>
+        
+        <footer>
+            <div class="instructions">
+                <h3>游戏说明</h3>
+                <div class="instruction-content">
+                    <div class="instruction-section">
+                        <h4>电脑操作</h4>
+                        <p>方向键或WASD控制移动</p>
+                        <p>空格键：暂停/继续</p>
+                        <p>回车键：开始游戏</p>
+                    </div>
+                    <div class="instruction-section">
+                        <h4>手机操作</h4>
+                        <p>使用虚拟按钮控制移动</p>
+                        <p>也可使用重力感应控制</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="features">
+                <h3>游戏特色</h3>
+                <ul>
+                    <li>🏆 分数和等级系统</li>
+                    <li>🎮 多种难度选择</li>
+                    <li>🎨 多种主题切换</li>
+                    <li>📱 完美支持手机</li>
+                    <li>🔊 音效反馈</li>
+                    <li>💾 最高分记录</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- 游戏结束模态框 -->
+    <div id="gameOverModal" class="modal">
+        <div class="modal-content">
+            <h2>游戏结束</h2>
+            <p>最终得分: <span id="finalScore">0</span></p>
+            <p>达到等级: <span id="finalLevel">1</span></p>
+            <div class="modal-actions">
+                <button id="restartBtn" class="btn primary">再来一局</button>
+                <button id="closeModalBtn" class="btn outline">关闭</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
