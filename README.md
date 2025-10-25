@@ -444,5 +444,5 @@ Special thanks to:
 *Breathing new life into classic gaming with modern browsers!*
 
 ---
-*Last updated:2025年10月*  
+Last updated:June 10, 2025
 *Stay updated by watching the repository* ⭐
